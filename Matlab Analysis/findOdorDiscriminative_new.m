@@ -16,9 +16,9 @@ for idxExp = 1:length(esp)
                         idxO = 0;
                         for iOdor = C(idxConc,:)
                             idxO = idxO + 1;
-                            appOdor(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).DigitalResponse1000ms == 1;
-                            appResp(:,idxO) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).AnalogicResponse1000ms -...
-                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).AnalogicBsl1000ms)';
+                            appOdor(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).DigitalResponse == 1;
+                            appResp(:,idxO) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).AnalogicResponse -...
+                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(iOdor).AnalogicBaseline)';
                         end
                         if sum(appOdor) > 0
                             [p, ~] = anova1(appResp,[],'off');

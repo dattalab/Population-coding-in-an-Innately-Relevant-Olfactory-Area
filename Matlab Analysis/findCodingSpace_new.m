@@ -16,8 +16,7 @@ for idxExp = 1:length(esp)
                 if esp(idxExp).shank(idxShank).SUA.cell(idxUnit).good == 1 && esp(idxExp).shank(idxShank).SUA.cell(idxUnit).L_Ratio < 0.5
                     resp = zeros(1,odors);
                     for idxOdor = 1:odors
-%                         resp(idxOdor) = abs(esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms) == 1;
-                        resp(idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms == 1;
+                        resp(idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse == 1;
                     end
                     if sum(resp) > 0
                         idxCell1 = idxCell1 + 1;
@@ -25,8 +24,8 @@ for idxExp = 1:length(esp)
                         for idxOdor = odorsRearranged
                             idxO = idxO + 1;
                             app = [];
-                            app = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse1000ms -...
-                                esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl1000ms;
+                            app = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse -...
+                                esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline;
                             app1 = [];
                             app1 = [app(1:5); app(6:10)];
                             app2 = [];

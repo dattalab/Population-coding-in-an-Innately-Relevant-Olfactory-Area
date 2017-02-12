@@ -6,8 +6,6 @@ function [performance, confusionMatrix, weigths, mi] = perform_linear_svm_decodi
 %                               0: include neurons that have at least one
 %                                  excitatory response
 %
-% option.window:        scalar, 300 or 1000 ms window
-%
 % option.L_ratio:       scalar indicating the minimum L_Ratio for including
 %                       that unit
 %

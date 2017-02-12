@@ -1,4 +1,21 @@
-loadExperiments
+
+%% set colors for plots
+coaC = [228,26,28] ./ 255;
+pcxC = [55,126,184]./255;
+
+%% collect data that are needed for classification
+
+coa15_1 = load('plCoA_15.mat');
+pcx15_1 = load('aPCx_15.mat');
+coaAA_1 = load('plCoA_AA.mat');
+pcxAA_1 = load('aPCx_AA.mat');
+odors = 1:15;
+windowBaseline = [2 3];
+windowResponse = [4 5];
+coa15 = collectData(coa15_1.espe, odors, windowBaseline,  windowResponse);
+pcx15 = collectData(pcx15_1.espe, odors, windowBaseline,  windowResponse);
+coaAA = collectData(coaAA_1.espe, odors, windowBaseline,  windowResponse);
+pcxAA = collectData(pcxAA_1.espe, odors, windowBaseline,  windowResponse);
 %% odor ID decoding as in Fig. 4A
 odors = 1:15;
 option = [];

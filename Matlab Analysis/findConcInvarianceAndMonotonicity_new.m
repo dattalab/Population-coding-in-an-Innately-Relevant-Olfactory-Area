@@ -20,7 +20,7 @@ for idxExp = 1:length(esp)
                         appOdor = zeros(1,5);
                         for iOdor = 1:5
                             idxOdor = iOdor + 5*(odor-1);
-                            appOdor(iOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms == 1;
+                            appOdor(iOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse == 1;
                         end
                         variantOdor = 1;
                         if sum(appOdor) > 0
@@ -31,8 +31,8 @@ for idxExp = 1:length(esp)
                             y = nan(10,5);
                             for iOdor = 1:5
                                 idxOdor = iOdor + 5*(odor-1);
-                                y(:,iOdor) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse1000ms -...
-                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl1000ms)';
+                                y(:,iOdor) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse -...
+                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline)';
                             end
                             [p, ~] = anova1(y,[],'off');
                             xx = [xx p];
@@ -53,8 +53,8 @@ for idxExp = 1:length(esp)
                             y = nan(10,5);
                             for iOdor = 1:5
                                 idxOdor = iOdor + 5*(odor-1);
-                                y(:,iOdor) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse1000ms -...
-                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl1000ms)';
+                                y(:,iOdor) = (esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse -...
+                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline)';
                             end
                             y1 = mean(y);
                             x = 1:5;

@@ -25,11 +25,11 @@ for idxExp = 1:length(esp)
                     for idxOdor = odorsRearranged
                         idxO = idxO + 1;
                         if onlyexc == 1
-                            app(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms == 1;
+                            app(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse == 1;
                         else
-                            app(idxO) = abs(esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms) == 1;
+                            app(idxO) = abs(esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse) == 1;
                         end
-                        app1(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms;
+                        app1(idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse;
                         if app1(idxO) > 0
                             idx.idxExc.idxO1(idxExp,idxO) = idx.idxExc.idxO1(idxExp,idxO) + 1;
                         end

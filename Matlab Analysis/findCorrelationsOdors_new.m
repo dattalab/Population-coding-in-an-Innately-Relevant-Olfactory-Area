@@ -1,7 +1,9 @@
-function  odorCorrelations = findCorrelationsOdors_new(esp, odors)
+function  odorCorrelations = findCorrelationsOdors_new(espe, odors, windowBaseline, windowResponse, lratio)
 
-% esp = pcxCS.esp;
-% odors = 1:15;
+odors = 1:15;
+
+esp = collectData(espe, odors, windowBaseline,  windowResponse);
+
 
 odorsRearranged = odors;
 odors = length(odorsRearranged);
@@ -14,10 +16,10 @@ for idxExp = 1:length(esp)
     for idxShank = 1:4
         if ~isempty(esp(idxExp).shank(idxShank).SUA)
             for idxUnit = 1:length(esp(idxExp).shank(idxShank).SUA.cell)
-                if esp(idxExp).shank(idxShank).SUA.cell(idxUnit).good == 1 && esp(idxExp).shank(idxShank).SUA.cell(idxUnit).L_Ratio < 0.5
+                if esp(idxExp).shank(idxShank).SUA.cell(idxUnit).good == 1 && esp(idxExp).shank(idxShank).SUA.cell(idxUnit).L_Ratio < lratio
                     resp = zeros(1,15);
                     for idxOdor = 1:15
-                        resp(idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms == 1;
+                        resp(idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse == 1;
                     end
                     if sum(resp) > 0
                         idxCell = idxCell + 1;
@@ -25,8 +27,8 @@ for idxExp = 1:length(esp)
                         for idxOdor = odorsRearranged
                             idxO = idxO + 1;
                             app = [];
-                            app = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse1000ms -...
-                                esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl1000ms;
+                            app = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse -...
+                                esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline;
                             responseCell1Mean(idxCell, idxO) = mean(app);
                         end
                     end

@@ -1,7 +1,16 @@
-coaCS2 = load('plCoA_CS2_2.mat');
-pcxCS2 = load('aPCx_CS2_2.mat');
+%% set colors for plotting
 coaC = [228,26,28] ./ 255;
 pcxC = [55,126,184]./255;
+
+%% collect data
+coaCS_1 = load('plCoA_CS.mat');
+pcxCS_1 = load('aPCx_CS.mat');
+
+odors = 1:15;
+windowBaseline = [2 3];
+windowResponse = [4 5];
+coaCS2 = collectData(coaCS_1.espe, odors, windowBaseline,  windowResponse);
+pcxCS2 = collectData(pcxCS_1.espe, odors, windowBaseline,  windowResponse);
 %%
 [totalSUACoa, totalResponsiveSUACoa, totalResponsiveNeuronPerOdorCoa, totalSUAExpCoa] = findNumberOfSua(coaCS2.esp, 1:15, 0.5, 0);
 [totalSUAPcx, totalResponsiveSUAPcx, totalResponsiveNeuronPerOdorPcx, totalSUAExpPcx] = findNumberOfSua(pcxCS2.esp, 1:15, 0.5, 0);
@@ -65,6 +74,9 @@ end
 
 %%
 odors = 1:15;
+
+
+
 [VariantCoa, InvariantCoa, nonmonotonicCoa, nonmonotonicSemCoa, monotonicDCoa, monotonicDSemCoa, monotonicICoa, monotonicISemCoa, cellLogCoa, n_cellsCoa] = findConcInvarianceAndMonotonicity_new(coaCS2.esp);
 [VariantPcx, InvariantPcx, nonmonotonicPcx, nonmonotonicSemPcx, monotonicDPcx, monotonicDSemPcx, monotonicIPcx, monotonicISemPcx, cellLogPcx, n_cellsPcx] = findConcInvarianceAndMonotonicity_new(pcxCS2.esp);
 %% as in Fig. 6C - right panels (Concentration Variant)
@@ -127,7 +139,7 @@ b(2).EdgeColor = pcxC;
 b(2).FaceColor = pcxC;
 set(gca, 'box', 'off', 'tickDir', 'out', 'fontname', 'arial', 'fontsize', 14)
 
-%%
+
 %%
 option = [];
 option.units = 'incrementing_by_one';

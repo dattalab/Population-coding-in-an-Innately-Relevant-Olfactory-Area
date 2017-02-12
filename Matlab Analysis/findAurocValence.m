@@ -11,7 +11,7 @@ for idxExp = 1:length(esp)
                 if esp(idxExp).shank(idxShank).SUA.cell(idxUnit).good == 1 && esp(idxExp).shank(idxShank).SUA.cell(idxUnit).L_Ratio < lratio
                     resp = [];
                     for idxOdor = odors
-                        resp(idxOdor) = abs(esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse1000ms) == 1;
+                        resp(idxOdor) = abs(esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).DigitalResponse) == 1;
                     end
                     if sum(resp) > 0
                         odor1S = nan*ones(50, 2);
@@ -21,8 +21,8 @@ for idxExp = 1:length(esp)
                             j = 0;
                             for idxOdor = idxSeries(1):idxSeries(5)
                                 j = j+1;
-                                A1s(:, j) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse1000ms'-...
-                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl1000ms';
+                                A1s(:, j) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse'-...
+                                    esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBsl';
                             end
                             odor1S(:,idxClass) = A1s(:);
                         end
