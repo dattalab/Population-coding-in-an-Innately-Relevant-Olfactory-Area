@@ -27,8 +27,8 @@ for idxExp = 1:length(esp)
                     if sum(app)>0
                         idxCell2 = idxCell2 + 1;
                         response = [];
-                        for idxO = odorsRearranged
-                            response(:,idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse-...
+                        for idxOdor = odorsRearranged
+                            response(:,idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse-...
                                 esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline;
                         end
                         lsCoa(idxCell2) = lifetime_sparseness(response);
@@ -68,8 +68,8 @@ for idxExp = 1:length(esp)
                     if sum(app) > 0
                         idxCell2 = idxCell2 + 1;
                         response = [];
-                        for idxO = odorsRearranged
-                            response(:,idxO) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse-...
+                        for idxOdor = odorsRearranged
+                            response(:,idxOdor) = esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicResponse-...
                                 esp(idxExp).shank(idxShank).SUA.cell(idxUnit).odor(idxOdor).AnalogicBaseline;
                         end
                         lsPcx(idxCell2) = lifetime_sparseness(response);

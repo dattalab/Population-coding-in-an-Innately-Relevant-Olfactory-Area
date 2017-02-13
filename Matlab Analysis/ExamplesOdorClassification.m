@@ -1,3 +1,4 @@
+clear
 %% set colors for plots
 coaC = [228,26,28] ./ 255;
 pcxC = [55,126,184]./255;
