@@ -11,11 +11,11 @@ pcxAA_1 = load('aPCx_AA.mat');
 odors = 1:15;
 windowBaseline = [2 3];
 windowResponse = [4 5];
-coa15.esp = collectData(coa15_1.espe, odors, windowBaseline,  windowResponse);
-pcx15.esp = collectData(pcx15_1.espe, odors, windowBaseline,  windowResponse);
-odors = 1:10;
-coaAA.esp = collectData(coaAA_1.espe, odors, windowBaseline,  windowResponse);
-pcxAA.esp = collectData(pcxAA_1.espe, odors, windowBaseline,  windowResponse);
+coa15 = collectData(coa15_1.espe, odors, windowBaseline,  windowResponse);
+pcx15 = collectData(pcx15_1.espe, odors, windowBaseline,  windowResponse);
+odors = 1:15;
+coaAA = collectData(coaAA_1.espe, odors, windowBaseline,  windowResponse);
+pcxAA = collectData(pcxAA_1.espe, odors, windowBaseline,  windowResponse);
 %% odor ID decoding as in Fig. 4A
 odors = 1:15;
 option = [];
@@ -336,8 +336,8 @@ for idxUnit = 1:totalResponsiveSUAPcx
     sua_MI_pcxValence(idxUnit) = mi;
 end
 %% as in Fig 4D
-[tuningCurvesCoa15, tuningCurvesSigCoa15] = findTuningCurves(coa15.esp, 1:15, 1, 0);
-[tuningCurvesPcx15, tuningCurvesSigPcx15] = findTuningCurves(pcx15.esp, 1:15, 1, 0);
+[tuningCurvesCoa15, tuningCurvesSigCoa15, tuningCurvesCoaAuRoc15, tuningCurvesCoaAuRocSig15] = findTuningCurves(coa15.esp, 1:15, 1, 0);
+[tuningCurvesPcx15, tuningCurvesSigPcx15, tuningCurvesPcxAuRoc15, tuningCurvesPcxAuRocSig15] = findTuningCurves(pcx15.esp, 1:15, 1, 0);
 
 Rcoa = tuningCurvesSigCoa15;
 Rcoa = zscore(Rcoa');

@@ -96,6 +96,7 @@ errbar([8 10], [mean(intra15Pcx(:)) mean(inter15Pcx(:))], [std(intra15Pcx)./sqrt
 
 
 xlim([0 13])
+ylim([-1 1])
 set(gca, 'XColor', 'w', 'box','off')
 set(gcf,'color','white', 'PaperPositionMode', 'auto');
 set(gca, 'box', 'off', 'tickDir', 'out', 'fontname', 'helvetica', 'fontsize', 14)
@@ -113,27 +114,10 @@ errbar([8 10], [mean(intraAAPcx(:)) mean(interAAPcx(:))], [std(intraAAPcx)./sqrt
 
 
 xlim([0 13])
+ylim([-1 1])
 set(gca, 'XColor', 'w', 'box','off')
 set(gcf,'color','white', 'PaperPositionMode', 'auto');
 set(gca, 'box', 'off', 'tickDir', 'out', 'fontname', 'helvetica', 'fontsize', 14)
 title('Valence Classes')
 
-%%
-y = [];
-y = [intra15Coa; inter15Coa; intra15Pcx; inter15Pcx];
-g1 = [];
-g1 = [ones(numel(intra15Coa),1); 2*ones(numel(inter15Coa),1); ones(numel(intra15Pcx),1); 2*ones(numel(inter15Pcx),1)];
-g2 = [];
-g2 = [ones(numel(intra15Coa),1); ones(numel(inter15Coa),1); 2*ones(numel(intra15Pcx),1); 2*ones(numel(inter15Pcx),1)];
-[p, table, stats] = anovan(y, {g1, g2}, 'mode', 'interaction')
 
-
-
-%%
-y = [];
-y = [intraAACoa; interAACoa; intraAAPcx; interAAPcx];
-g1 = [];
-g1 = [ones(numel(intraAACoa),1); 2*ones(numel(interAACoa),1); ones(numel(intraAAPcx),1); 2*ones(numel(interAAPcx),1)];
-g2 = [];
-g2 = [ones(numel(intraAACoa),1); ones(numel(interAACoa),1); 2*ones(numel(intraAAPcx),1); 2*ones(numel(interAAPcx),1)];
-[p, table, stats] = anovan(y, {g1, g2}, 'mode', 'interaction')
